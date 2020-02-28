@@ -117,6 +117,8 @@ class ConsumerCommand extends Command
             switch ($message->err) {
                 case RD_KAFKA_RESP_ERR_NO_ERROR:
                     $this->processMessage($message);
+                    // Commit offsets asynchronously
+                    $consumer->commitAsync($message);
                     break;
 
                 case RD_KAFKA_RESP_ERR__PARTITION_EOF:
