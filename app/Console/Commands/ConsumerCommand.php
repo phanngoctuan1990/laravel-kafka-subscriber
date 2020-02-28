@@ -93,10 +93,10 @@ class ConsumerCommand extends Command
 
         $this->info(json_encode($message));
 
-        Stat::updateOrCreate([
+        Stat::updateOrCreate(
             ['inventory_id' => $message->body->id],
-            ['make' => $message->body->make, 'model' => $message->body->model],
-        ]);
+            ['make' => $message->body->make, 'model' => $message->body->model]
+        );
     }
 
     /**
